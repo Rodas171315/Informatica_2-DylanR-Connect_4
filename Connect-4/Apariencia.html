@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+		Connect 4
+	</title>
+
+	<link href="Estilo.css" rel="stylesheet">
+	<script src="Programa.js"></script>
+    <link rel="icon" href="Resource/spartan-logo.png">
+    
+</head>
+
+<body>
+
+    <div id="encabezado"><img src="Resource/connet4.png"></div>
+
+    <div id="matrix">
+        <!-- LINEA 0 -->
+        <div id="00"><img class="empty" src="Resource/empty.png"></div>
+        <div id="01"><img class="empty" src="Resource/empty.png"></div>
+        <div id="02"><img class="empty" src="Resource/empty.png"></div>
+        <div id="03"><img class="empty" src="Resource/empty.png"></div>
+        <div id="04"><img class="empty" src="Resource/empty.png"></div>
+        <div id="05"><img class="empty" src="Resource/empty.png"></div>
+
+        <!-- LINEA 1 -->
+        <div id="10"><img class="empty" src="Resource/empty.png"></div>
+        <div id="11"><img class="empty" src="Resource/empty.png"></div>
+        <div id="12"><img class="empty" src="Resource/empty.png"></div>
+        <div id="13"><img class="empty" src="Resource/empty.png"></div>
+        <div id="14"><img class="empty" src="Resource/empty.png"></div>
+        <div id="15"><img class="empty" src="Resource/empty.png"></div>
+        
+        <!-- LINEA 2 -->
+        <div id="20"><img class="empty" src="Resource/empty.png"></div>
+        <div id="21"><img class="empty" src="Resource/empty.png"></div>
+        <div id="22"><img class="empty" src="Resource/empty.png"></div>
+        <div id="23"><img class="empty" src="Resource/empty.png"></div>
+        <div id="24"><img class="empty" src="Resource/empty.png"></div>
+        <div id="25"><img class="empty" src="Resource/empty.png"></div>
+        
+        <!-- LINEA 3 -->
+        <div id="30"><img class="empty" src="Resource/empty.png"></div>
+        <div id="31"><img class="empty" src="Resource/empty.png"></div>
+        <div id="32"><img class="empty" src="Resource/empty.png"></div>
+        <div id="33"><img class="empty" src="Resource/empty.png"></div>
+        <div id="34"><img class="empty" src="Resource/empty.png"></div>
+        <div id="35"><img class="empty" src="Resource/empty.png"></div>
+        
+        <!-- LINEA 4 -->
+        <div id="40"><img class="empty" src="Resource/empty.png"></div>
+        <div id="41"><img class="empty" src="Resource/empty.png"></div>
+        <div id="42"><img class="empty" src="Resource/empty.png"></div>
+        <div id="43"><img class="empty" src="Resource/empty.png"></div>
+        <div id="44"><img class="empty" src="Resource/empty.png"></div>
+        <div id="45"><img class="empty" src="Resource/empty.png"></div>
+        
+        <!-- LINEA 5 -->
+        <div id="50"><img class="empty" src="Resource/empty.png"></div>
+        <div id="51"><img class="empty" src="Resource/empty.png"></div>
+        <div id="52"><img class="empty" src="Resource/empty.png"></div>
+        <div id="53"><img class="empty" src="Resource/empty.png"></div>
+        <div id="54"><img class="empty" src="Resource/empty.png"></div>
+        <div id="55"><img class="empty" src="Resource/empty.png"></div>
+        
+        <!-- LINEA 6 -->
+        <div id="60"><img class="empty" src="Resource/empty.png"></div>
+        <div id="61"><img class="empty" src="Resource/empty.png"></div>
+        <div id="62"><img class="empty" src="Resource/empty.png"></div>
+        <div id="63"><img class="empty" src="Resource/empty.png"></div>
+        <div id="64"><img class="empty" src="Resource/empty.png"></div>
+        <div id="65"><img class="empty" src="Resource/empty.png"></div>
+
+    </div>
+
+    <center><button class="myButtom" onclick="resetGame()"> Reiniciar </button></center>
+    <div id="gameover"></div>
+
+    <div class="pie de pagina">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4"><img class="copyright" id="mylogo" src="Resource/spartan-logo.png" height="100" width="100"> <p class="copyright"> Dylan Rodas <br> Informatica 2 <br> Guatemala, Guatemala </p> </div>
+                <div class="col-sm-5"></div>
+                <div class="col-sm-3 social"> 
+                    <center> Redes Sociales: <br> 
+                        &nbsp; 
+                        <a href="https://www.facebook.com/dylan.rodas.512" target="blank"><img src="Resource/social/facebook.png" height="40" width="40"></a> 
+                        &nbsp; 
+                        <a href="https://twitter.com/ManiacalKnight9" target="blank"><img src="Resource/social/twitter.png" height="40" width="40"></a>
+                        &nbsp; 
+                        <a href="https://www.instagram.com/maniacalknight9/" target="blank"><img src="Resource/social/instagram.png" height="40" width="40"></a>
+                        &nbsp; 
+                        <a href="mailto:dylang512@hotmail.com" target="blank"><img src="Resource/social/correo-outlook.png" height="40" width="40"></a> 
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
