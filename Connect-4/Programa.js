@@ -139,7 +139,7 @@ var lastCompuColumn = 0;
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
-                        x.innerHTML="Jugador 1 gano!";
+                        x.innerHTML= Player1 + "gano!";
                         winSound.play();
                         return true;
                     }
@@ -156,7 +156,7 @@ var lastCompuColumn = 0;
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
-                        x.innerHTML="Jugador 1 gano";
+                        x.innerHTML= Player1 + "gano!";
                         winSound.play();
                         return true;
                     }else{
@@ -176,7 +176,7 @@ var lastCompuColumn = 0;
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
-                        x.innerHTML="Jugador 2 gano!";
+                        x.innerHTML= Player2 + "gano!";
                         winSound.play();
                         return true;
                     }
@@ -193,7 +193,7 @@ var lastCompuColumn = 0;
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
-                        x.innerHTML="Jugador 2 gano";
+                        x.innerHTML= Player2 + "gano";
                         winSound.play();
                         return true;
                     }else{
