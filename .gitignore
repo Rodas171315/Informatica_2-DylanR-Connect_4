@@ -1,5 +1,6 @@
 **/bin/*
 **/obj/*
+**/node_modules/*
 *.~lock.*
 *.aux
 *.out
