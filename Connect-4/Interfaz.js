@@ -3,7 +3,7 @@ import implement, {Interface, type } from implement-js;
 const Jugador = Interface({
     edad: type('number'),
     nombre: type('var'),
-    sonido: type('function')
+    frase: type('function')
 })
 
 const IA = Interface({
@@ -27,3 +27,4 @@ const Tableros = Interface({
 const Ficha = Interface({
     color: type('var')
 })
+

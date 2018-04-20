@@ -4,17 +4,16 @@ var Player1 = prompt("Ingresa tu nombre jugador 1");
 var Player2 = prompt("Ingresa tu nombre jugador 2");
 var Compu = "Cortana";
 
-var Exit = 0;
-
-if(Exit = 1){
+// onunload="PageClose()"
+function PageClose(){
     var result = confirm("Realmente quieres salir de esta pagina?");
     if (result == true) {
-     alert("Gracias por jugar");
+    alert("Gracias por jugar");
     }
     else {
     alert("Quieres la revancha verdad?");
     }
-}
+};
 
 var tablero = [
     [0,0,0,0,0,0],
@@ -89,6 +88,9 @@ var lastCompuColumn = 0;
 
     }
 
+    // La propiedad innerHTML establece o devuelve el contenido HTML de un elemento.
+    // getElementById encuentra elemento por id
+
     function insertarFicha(row, column, turno){
         var finalID = row.toString().concat(column.toString());
         var x = document.getElementById(finalID);
@@ -122,6 +124,19 @@ var lastCompuColumn = 0;
             return;
         }
         colocarFicha(randomColumn, 1);
+    }
+
+    function checkFull(){
+        for(j=0; j<6; j++){
+            if(tablero[0][j]==0){
+                return false;
+            }
+        }
+
+        var x = document.getElementById("gameover");
+        x.classList.add("draw");
+        x.innerHTML="Empate!";
+        return true;
     }
 
     //Comprueba si se gano despues de colocar una ficha
