@@ -4,6 +4,34 @@ var Player1 = prompt("Ingresa tu nombre jugador 1");
 var Player2 = prompt("Ingresa tu nombre jugador 2");
 var Compu = "Cortana";
 
+function Jugador(edad, nombre, frase){
+    this.edad = edad;
+    this.nombre = nombre;
+    this.frase = frase;
+}
+
+function IA(nombre, dificultad, frase){
+    this.nombre = nombre;
+    this.dificultad = dificultad;
+    this.frase = frase;
+}
+
+function Frases(ganadoras, perdedoras, empate){
+    this.ganadoras = ganadoras;
+    this.perdedoras = perdedoras;
+    this.empate = empate;
+}
+
+function Tableros(small, medium, big){
+    this.small = small;
+    this.medium = medium;
+    this.big = big;
+}
+
+function Ficha(color){
+    this.color = color;
+}
+
 // onunload="PageClose()"
 function PageClose(){
     var result = confirm("Realmente quieres salir de esta pagina?");

@@ -1,30 +1,30 @@
 import implement, {Interface, type } from implement-js;
 
-const Jugador = Interface({
+var Jugador = Interface({
     edad: type('number'),
     nombre: type('var'),
-    frase: type('function')
+    frase: type('var')
 })
 
-const IA = Interface({
+var IA = Interface({
     nombre: type('var'),
     dificultad: type('number'),
-    frase: type('function')
+    frase: type('var')
 })
 
-const Frases = Interface({
+var Frases = Interface({
     ganadoras: type('var'),
     perdedoras: type('var'),
     empate: type('var')
 })
 
-const Tableros = Interface({
+var Tableros = Interface({
     small: type('array' [type('number', 'number')]),
     medium: type('array' [type('number', 'number')]),
     big: type('array' [type('number', 'number')])
 })
 
-const Ficha = Interface({
+var Ficha = Interface({
     color: type('var')
 })
 
