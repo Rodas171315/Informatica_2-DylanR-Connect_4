@@ -1,4 +1,5 @@
 // http://www.chaijs.com/
+// https://mochajs.org/
 
 //var mocha = require('mocha'),
 //    Programa = require('../Programa'),
@@ -20,6 +21,8 @@ describe('Jugador', function() {
             this.frase = frase;
         }
         var Jugador1 = new Jugador(19, "Dylan", "Cae ante el poder del rey!");
+        var x = Jugador1.edad;
+        assert.equal(x,19);
     });
 });
 
@@ -30,7 +33,9 @@ describe('IA', function() {
             this.dificultad = dificultad;
             this.frase = frase;
         }
-        var Cortana = new IA(Cortana, 10, "Chief, can u hear me?");
+        var Cortana = new IA("Cortana", 10, "Chief, can u hear me?");
+        var x = Cortana.nombre;
+        assert.equal(x,"Cortana");
     });
 });
 
@@ -42,6 +47,8 @@ describe('Frases', function() {
             this.empate = empate;
         }
         var Frases1 = new Frases("Mas suerte la proxima!", "Oh Raioz!", "Eres un digno adversario");
+        var x = Frases1.empate;
+        assert.equal(x, "Eres un digno adversario");
     });
 });
 
@@ -52,7 +59,8 @@ describe('Tableros', function() {
             this.medium = medium;
             this.big = big;
         }
-        var Tableros1 = new Tableros([4],[8],[12]);
+        var Tableros1 = new Tableros([5,5],[7,6],[10,12]);
+        var x = Tableros1.medium;
     });
 });
 
@@ -62,6 +70,8 @@ describe('Ficha', function() {
             this.color = color;
         }
         var FichaAzul = new Ficha("Azul");
+        var x = FichaAzul.color;
+        assert.equal(x, "Azul");
     });
 });
 
