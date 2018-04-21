@@ -26,6 +26,19 @@ describe('Jugador', function() {
     });
 });
 
+describe('Jugador', function() {
+    it('Crea nuevos jugadores', function() {
+        function Jugador(edad, nombre, frase){
+            this.edad = edad;
+            this.nombre = nombre;
+            this.frase = frase;
+        }
+        var Jugador2 = new Jugador(19, "Pajopo", "Eeedna Moda!");
+        var x = Jugador2.nombre;
+        assert.equal(x,"Pajopo");
+    });
+});
+
 describe('IA', function() {
     it('Crea nuevas IA', function() {
         function IA(nombre, dificultad, frase){
