@@ -284,3 +284,29 @@ var lastCompuColumn = 0;
             }
         }
     }
+
+    function resetGame(){
+        for(i=0; i<7; i++)
+        {
+            for(j=0; j<6; j++)
+            {
+                tablero[i][j]=0;
+                var finalID = i.toString().concat(j.toString());
+                var x = document.getElementById(finalID);
+                x.innerHTML='<img src="Resource/empty.png" class="empty">';
+            }
+            gameover = false;
+            enabledClick = true;
+            CompuYaJugo = false;
+
+            var x = document.getElementById("gameover");
+            x.innerHTML = " ";
+            x.classList.remove("win");
+            x.classList.remove("lose");
+            x.classList.remove("draw");
+            winSound.pause();
+            loseSound.pause();
+            winSound.currentTime = 0;
+            loseSound.currentTime = 0;
+        }
+    }
