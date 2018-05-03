@@ -1,36 +1,41 @@
-alert("Juega\nConecta con tus amigos!");
-
-var Player1 = prompt("Ingresa tu nombre jugador 1");
-var Player2 = prompt("Ingresa tu nombre jugador 2");
-var Compu = "Cortana";
-
 function Jugador(edad, nombre, frase){
     this.edad = edad;
     this.nombre = nombre;
     this.frase = frase;
 }
+module.exports.Jugador = Jugador;
 
 function IA(nombre, dificultad, frase){
     this.nombre = nombre;
     this.dificultad = dificultad;
     this.frase = frase;
 }
+module.exports.IA = IA;
 
 function Frases(ganadoras, perdedoras, empate){
     this.ganadoras = ganadoras;
     this.perdedoras = perdedoras;
     this.empate = empate;
 }
+module.exports.Frases = Frases;
 
 function Tableros(small, medium, big){
     this.small = small;
     this.medium = medium;
     this.big = big;
 }
+module.exports.Tableros = Tableros;
 
 function Ficha(color){
     this.color = color;
 }
+module.exports.Ficha = Ficha;
+
+alert("Juega\nConecta con tus amigos!");
+
+var Player1 = prompt("Ingresa tu nombre jugador 1");
+var Player2 = prompt("Ingresa tu nombre jugador 2");
+var Compu = "Cortana";
 
 // onunload="PageClose()"
 function PageClose(){
@@ -147,14 +152,14 @@ var lastCompuColumn = 0;
     //Realiza un turno aleatoriamente para la computadora
     function randomTurno(){
         var randomColumn = Math.floor(Math.random()*6);
-        if(JugadorGanaArriba(getFreeRow(randomColumn), randomColumn)){
+        if(JugadorGanaArriba(ObtenerFila(randomColumn), randomColumn)){
             randomTurno();
             return;
         }
         colocarFicha(randomColumn, 1);
     }
 
-    function checkFull(){
+    function checkifFull(){
         for(j=0; j<6; j++){
             if(tablero[0][j]==0){
                 return false;
@@ -162,9 +167,42 @@ var lastCompuColumn = 0;
         }
 
         var x = document.getElementById("gameover");
-        x.classList.add("draw");
         x.innerHTML="Empate!";
+        x.classList.add("draw");
         return true;
+    }
+
+    function ObtenerFila(column){
+        for(i=6; i>=0; i--)
+        {
+            if (tablero[i][column]==0) {
+                return i;
+            }
+            return 0;
+        }
+    }
+
+    function JugadorGanaArriba(row,column){
+        if (row==0){
+            return false;
+        }
+        var JugadorPuedeGanar = JugadorGanariaSi(row-1,column);
+        return JugadorPuedeGanar;
+    }
+
+    function PuedeColocarse(row,column){
+        for(i=6; i>=0; i--)
+        {
+            if (tablero[i][column]==0) {
+                if (row==i) {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            return false;
+        }
     }
 
     //Comprueba si se gano despues de colocar una ficha
