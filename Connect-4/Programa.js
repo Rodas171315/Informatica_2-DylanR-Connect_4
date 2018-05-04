@@ -1,3 +1,14 @@
+function alert(){
+    alert("Juega\nConecta con tus amigos!");
+}
+
+function prompt(){
+    var Player1 = prompt("Ingresa tu nombre jugador 1");
+    var Player2 = prompt("Ingresa tu nombre jugador 2");
+}
+
+var Compu = "Cortana";
+
 function Jugador(edad, nombre, frase){
     this.edad = edad;
     this.nombre = nombre;
@@ -31,12 +42,6 @@ function Ficha(color){
 }
 module.exports.Ficha = Ficha;
 
-alert("Juega\nConecta con tus amigos!");
-
-var Player1 = prompt("Ingresa tu nombre jugador 1");
-var Player2 = prompt("Ingresa tu nombre jugador 2");
-var Compu = "Cortana";
-
 // onunload="PageClose()"
 function PageClose(){
     var result = confirm("Realmente quieres salir de esta pagina?");
@@ -58,9 +63,11 @@ var tablero = [
     [0,0,0,0,0,0]
 ];
 
-var winSound = new Audio('Audio/won.mp3');
-var loseSound = new Audio('Audio/lose.mp3');
-var blopSound = new Audio('Audio/blop.mp3');
+function Audio(){
+    var winSound = new Audio('Audio/won.mp3');
+    var loseSound = new Audio('Audio/lose.mp3');
+    var blopSound = new Audio('Audio/blop.mp3');
+}
 
 var enabledClick = true;
 var gameover = false;
@@ -140,12 +147,13 @@ var lastCompuColumn = 0;
             lastCompuRow = row;
             lastCompuColumn = column;            
         }
-        blopSound.play();
+        // blopSound.play();
+        Audio.blopSound.play();
 
         gameover=checkWin(row, column, turno);
 
         if(row==0){
-            gameover=checkifFull();
+            gameover=checkFull();
         }
     }
 
@@ -159,7 +167,7 @@ var lastCompuColumn = 0;
         colocarFicha(randomColumn, 1);
     }
 
-    function checkifFull(){
+    function checkFull(){
         for(j=0; j<6; j++){
             if(tablero[0][j]==0){
                 return false;
@@ -221,7 +229,8 @@ var lastCompuColumn = 0;
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
                         x.innerHTML= Player1 + "gano!";
-                        winSound.play();
+                        // winSound.play();
+                        Audio.winSound.play();
                         return true;
                     }
                 }else{
@@ -229,7 +238,7 @@ var lastCompuColumn = 0;
                 }
             }
 
-            //Vertical
+            // Vertical
             count = 0;
             for(i=0; i<7; i++){
                 if(tablero[i][column]==1){
@@ -238,7 +247,8 @@ var lastCompuColumn = 0;
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
                         x.innerHTML= Player1 + "gano!";
-                        winSound.play();
+                        // winSound.play();
+                        Audio.winSound.play();
                         return true;
                     }else{
                         count=0;
@@ -258,7 +268,8 @@ var lastCompuColumn = 0;
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
                         x.innerHTML= Player2 + "gano!";
-                        winSound.play();
+                        // winSound.play();
+                        Audio.winSound.play();
                         return true;
                     }
                 }else{
@@ -266,7 +277,7 @@ var lastCompuColumn = 0;
                 }
             }
 
-            //Vertical
+            // Vertical
             count = 0;
             for(i=0; i<7; i++){
                 if(tablero[i][column]==1){
@@ -275,7 +286,8 @@ var lastCompuColumn = 0;
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
                         x.innerHTML= Player2 + "gano";
-                        winSound.play();
+                        // winSound.play();
+                        Audio.winSound.play();
                         return true;
                     }else{
                         count=0;
@@ -304,9 +316,13 @@ var lastCompuColumn = 0;
             x.classList.remove("win");
             x.classList.remove("lose");
             x.classList.remove("draw");
-            winSound.pause();
-            loseSound.pause();
-            winSound.currentTime = 0;
-            loseSound.currentTime = 0;
+            // winSound.pause();
+            Audio.winSound.pause();
+            // loseSound.pause();
+            Audio.loseSound.pause();
+            // winSound.currentTime = 0;
+            Audio.winSound.currentTime = 0;
+            // loseSound.currentTime = 0;
+            Audio.loseSound.currentTime = 0;
         }
     }

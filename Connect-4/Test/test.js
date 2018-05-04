@@ -1,9 +1,9 @@
 // http://www.chaijs.com/
 // https://mochajs.org/
 
-//var mocha = require('mocha'),
+var mocha = require('mocha'),
 //    Programa = require('../Programa'),
-//    assert = mocha.assert;
+    assert = mocha.assert;
 //
 //describe('Prueba de Metodos con el Programa()', function() {
 //   it('Prueba de checkFull()', function() {
@@ -11,11 +11,7 @@
 //    });
 //});
 
-var {Jugador} = require("../Programa");
-var {IA} = require("../Programa");
-var {Frases} = require("../Programa");
-var {Tableros} = require("../Programa");
-var {Ficha} = require("../Programa");
+const {Jugador, IA, Frases, Tableros, Ficha} = require("../Programa");
 
 var assert = require('assert');
 
