@@ -43,7 +43,7 @@ function Ficha(color){
 module.exports.Ficha = Ficha;
 
 // onunload="PageClose()"
-function PageClose(){
+window.onunload = function PageClose(){
     var result = confirm("Realmente quieres salir de esta pagina?");
     if (result == true) {
     alert("Gracias por jugar");
@@ -164,7 +164,7 @@ var lastCompuColumn = 0;
             randomTurno();
             return;
         }
-        colocarFicha(randomColumn, 1);
+        colocarFicha(randomColumn, 2);
     }
 
     function checkFull(){
@@ -255,6 +255,71 @@ var lastCompuColumn = 0;
                     }
                 }
             }
+
+            // Diagonal
+            count = 0;
+            var diagonal1 = [];
+            var diagonal2 = [];
+
+            // Principio de la primera diagonal
+            var i = row;
+            var j = column;
+            while (i>0 && j>0){
+                j--;
+                i--;
+            }
+            // Empuja los elementos de la primera diagonal hacia la matriz
+            while (i<=6 && j<=5) {
+                diagonal1.push(tablero[i][j]);
+                i++;
+                j++;
+            }
+
+            // Principio de la segunda diagonal
+            var i = row;
+            var j = column;
+            while (i<6 && j>0){
+                i++;
+                j--;
+            }
+            // Empuja los elementos de la segunda diagonal hacia la matriz
+            while (i>=0 && j<=5) {
+                diagonal2.push(tablero[i][j]);
+                i--;
+                j++;
+            }
+            
+            // Comprueba si tenemos cuatro fichas consecutivas en la primera diagonal
+            for(q=0; q<diagonal1.length; q++){
+                if(diagonal1[q]==1){
+                    count++;
+                    if(count==4){
+                        var x = document.getElementById("gameover");
+                        x.classList.add("win");
+                        x.innerHTML= Player1 + "gano!";
+                        Audio.winSound.play();
+                        return true;
+                    }
+                }else{
+                    count = 0;
+                }
+            }
+            // Comprueba si tenemos cuatro fichas consecutivas en la segunda diagonal
+            count = 0;
+            for(q=0; q<diagonal2.length; q++){
+                if(diagonal2[q]==1){
+                    count++;
+                    if(count==4){
+                        var x = document.getElementById("gameover");
+                        x.classList.add("win");
+                        x.innerHTML= Player1 + "gano!";
+                        Audio.winSound.play();
+                        return true;
+                    }
+                }else{
+                    count = 0;
+                }
+            }            
         }
 
         // ------------------------ SI EL JUGADOR 2 GANO ------------------------------
@@ -294,6 +359,71 @@ var lastCompuColumn = 0;
                     }
                 }
             }
+
+            // Diagonal
+            count = 0;
+            var diagonal1 = [];
+            var diagonal2 = [];
+
+            // Principio de la primera diagonal
+            var i = row;
+            var j = column;
+            while (i>0 && j>0){
+                j--;
+                i--;
+            }
+            // Empuja los elementos de la primera diagonal hacia la matriz
+            while (i<=6 && j<=5) {
+                diagonal1.push(tablero[i][j]);
+                i++;
+                j++;
+            }
+
+            // Principio de la segunda diagonal
+            var i = row;
+            var j = column;
+            while (i<6 && j>0){
+                i++;
+                j--;
+            }
+            // Empuja los elementos de la segunda diagonal hacia la matriz
+            while (i>=0 && j<=5) {
+                diagonal2.push(tablero[i][j]);
+                i--;
+                j++;
+            }
+            
+            // Comprueba si tenemos cuatro fichas consecutivas en la primera diagonal
+            for(q=0; q<diagonal1.length; q++){
+                if(diagonal1[q]==1){
+                    count++;
+                    if(count==4){
+                        var x = document.getElementById("gameover");
+                        x.classList.add("win");
+                        x.innerHTML= Player2 + "gano!";
+                        Audio.winSound.play();
+                        return true;
+                    }
+                }else{
+                    count = 0;
+                }
+            }
+            // Comprueba si tenemos cuatro fichas consecutivas en la segunda diagonal
+            count = 0;
+            for(q=0; q<diagonal2.length; q++){
+                if(diagonal2[q]==1){
+                    count++;
+                    if(count==4){
+                        var x = document.getElementById("gameover");
+                        x.classList.add("win");
+                        x.innerHTML= Player2 + "gano!";
+                        Audio.winSound.play();
+                        return true;
+                    }
+                }else{
+                    count = 0;
+                }
+            }            
         }
     }
 
