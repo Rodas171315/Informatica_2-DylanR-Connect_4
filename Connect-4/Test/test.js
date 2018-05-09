@@ -62,16 +62,6 @@ describe('Ficha', function() {
     });
 });
 
-var tablero = [
-    [1,2,1,2,1,2],
-    [2,1,2,1,2,1],
-    [1,2,1,2,1,2],
-    [2,1,2,1,2,1],
-    [1,2,1,2,1,2],
-    [2,1,2,1,2,1],
-    [1,2,1,2,1,2]
-];
-
 describe('#colocarFicha()', function() {
     it('Si el jugador esta habilitado permite colocar una ficha', function() {
         ;
@@ -90,9 +80,23 @@ describe('#randomTurno()', function() {
     });
 });
 
+const{checkFull} = require("../Programa");
 describe('#checkFull()', function() {
     it('Retorna false si el tablero esta vacio o true si esta lleno', function() {
-        tablero;
+        var tablerotest = [
+            [1,2,1,2,1,2],
+            [2,1,2,1,2,1],
+            [2,1,2,1,2,1],
+            [2,1,2,1,2,1],
+            [1,2,1,2,1,2],
+            [1,2,1,2,1,2],
+            [1,2,1,2,1,2]
+        ];
+        
+        var actual = checkFull(tablerotest);
+        var expected = true;
+
+        assert.equal(actual,expected);
     });
 });
 

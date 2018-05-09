@@ -43,15 +43,15 @@ function Ficha(color){
 module.exports.Ficha = Ficha;
 
 // onunload="PageClose()"
-window.onunload = function PageClose(){
-    var result = confirm("Realmente quieres salir de esta pagina?");
-    if (result == true) {
-    alert("Gracias por jugar");
-    }
-    else {
-    alert("Quieres la revancha verdad?");
-    }
-};
+// window.onunload = function PageClose(){
+//    var result = confirm("Realmente quieres salir de esta pagina?");
+//    if (result == true) {
+//    alert("Gracias por jugar");
+//    }
+//    else {
+//    alert("Quieres la revancha verdad?");
+//    }
+//};
 
 var tablero = [
     [0,0,0,0,0,0],
@@ -177,8 +177,10 @@ var lastCompuColumn = 0;
         var x = document.getElementById("gameover");
         x.innerHTML="Empate!";
         x.classList.add("draw");
-        return true;
+        return true;         
     }
+
+    module.exports.checkFull = checkFull;
 
     function ObtenerFila(column){
         for(i=6; i>=0; i--)
