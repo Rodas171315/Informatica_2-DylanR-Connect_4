@@ -80,7 +80,29 @@ describe('#randomTurno()', function() {
     });
 });
 
-const{checkFull} = require("../Programa");
+const {PuedeColocarse} = require("../BaseCode");
+describe('#PuedeColocarse()', function() {
+    it('Verifica si se puede colocar la ficha en la posicion solicitada', function() {
+        var tablerotest = [
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [2,1,2,1,2,1],
+            [1,2,1,2,1,2],
+            [1,2,1,2,1,2],
+            [1,2,1,2,1,2]
+        ];
+        row = tablerotest[0][2];
+        column = tablerotest[2][0];
+
+        var actual = PuedeColocarse(row,column);
+        var expected = true;
+
+        assert.equal(actual, expected);
+    });
+});
+
+const{checkFull} = require("../BaseCode");
 describe('#checkFull()', function() {
     it('Retorna false si el tablero esta vacio o true si esta lleno', function() {
         var tablerotest = [
@@ -106,3 +128,22 @@ describe('#checkWin()', function() {
     });
 });
 
+const {resetGame} = require("../BaseCode");
+describe('#resetGame()', function() {
+    it('Reinicia el juego', function() {
+        var tablerotest = [
+            [0,0,0,0,0,0],
+            [2,1,2,1,2,1]
+        ];
+
+        var tablerotest2 = [
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0]
+        ];
+
+        var actual = resetGame(tablerotest);
+        var expected = tablerotest2;
+
+        assert.equal(actual, expected);
+    });
+});

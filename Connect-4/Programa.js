@@ -180,8 +180,6 @@ var lastCompuColumn = 0;
         return true;         
     }
 
-    module.exports.checkFull = checkFull;
-
     function ObtenerFila(column){
         for(i=6; i>=0; i--)
         {
