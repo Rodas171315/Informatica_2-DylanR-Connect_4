@@ -333,7 +333,7 @@ var lastCompuColumn = 0;
                 }
             }
         }
-
+        
         // Diagonal
         count = 0;
         var diagonal1 = [];
