@@ -398,7 +398,7 @@ var lastCompuColumn = 0;
             return;
         }
 
-        // PRUEBA SI LA COMPUTADORA PUEDE GANAR RESPUESTA DE <<PRIORIDAD MÁXIMA>>
+        // PRUEBA SI LA COMPUTADORA PUEDE GANAR, RESPUESTA DE <<PRIORIDAD MÁXIMA>>
         for(w=6; w>=0; w--)
         {
             for(x=5; x>=0; x--)
@@ -424,9 +424,76 @@ var lastCompuColumn = 0;
                     }
                 }
             }
-        }        
-    }
+        }
+        
+        // PREVIENE EL TRUCO CON 3 FICHAS SUCESIVAS, EN UN CAMPO DE AMBOS LADOS (TANTO IZQUIERDO Y DERECHO)
+        var trickCount = 0;
+        var LadoIzq = 0;
+        var LadoDer = 0;
 
+        var trickFound = false;
+
+        for(i=1; i<5; i++)
+        {
+            if(tablero[lastPlayer1Row][i]==1){
+                if(LadoIzq==0){
+                    LadoIzq = i;
+                }
+                trickCount++;
+                if(trickCount==2){
+                    LadoDer = i;
+                    trickFound = true;
+                    break;
+                }
+            }else{
+                LadoIzq = 0;
+                trickCount = 0;
+            }
+        }
+        if(trickFound){
+            if(tablero[lastPlayer1Row][LadoIzq-1]==0 && tablero[lastPlayer1Row][LadoDer+1]==0 && tablero[lastPlayer1Row][LadoDer+2]==0)
+            {
+                colocarFicha(LadoIzq-1,2);
+                return;
+            }
+            if(tablero[lastPlayer1Row][LadoIzq-1]==0 && tablero[lastPlayer1Row][LadoDer+1]==0 && tablero[lastPlayer1Row][LadoDer+2]==0)
+            {
+                colocarFicha(LadoIzq-1);
+                return;
+            }                
+        }
+
+        // FILA DE FICHAS HORIZONTAL
+        if(lastCompuColumn<5){                                // a la derecha
+            if(tablero[lastCompuRow][lastCompuColumn+1]==0){
+                if(JugadorGanaArriba(ObtenerFila(lastCompuColumn+1),lastCompuColumn+1)){
+                    randomTurno();
+                    return;
+                } // ¿Permitirá la computadora que el jugador gane con este movimiento? Si es así, lo evitamos y hacemos un movimiento aleatorio con randomTurn();
+                
+                colocarFicha(lastCompuColumn+1,2);
+                return;
+            }
+        }
+
+        for(i=lastCompuColumn-1; i>=0; i--)                   // Si no es posible, entonces a la izquierda
+        {
+            if(tablero[lastCompuRow][i]==0){
+                if(JugadorGanaArriba(ObtenerFila(i),i)){
+                    randomTurno();
+                    return;
+                }
+
+                colocarFicha(i,2);
+                return;
+            }
+        }
+
+        randomTurno();
+    }
+    /*------------------------------------------ FINALIZA LA INTELIGENCIA ARTIFICIAL -----------------------------------------*/    
+
+    // Comprueba si el tablero ya esta lleno
     function checkFull(){
         for(j=0; j<6; j++){
             if(tablero[0][j]==0){
@@ -440,7 +507,7 @@ var lastCompuColumn = 0;
         return true;         
     }    
 
-    //Comprueba si se gano despues de colocar una ficha
+    // Comprueba si se gano despues de colocar una ficha
     function checkWin(row, column, turno){
 
         var count = 0; // Se debe llegar a 4 fichas consecutivas
