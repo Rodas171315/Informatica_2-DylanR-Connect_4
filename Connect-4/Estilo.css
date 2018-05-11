@@ -1,3 +1,5 @@
+/* ______________________________ ORDEN DE TABLERO Y ANIMACION DE FICHAS ______________________________ */
+
 #arrows{
     display: flex;
     flex-direction: row;
@@ -54,7 +56,7 @@
     100%{opacity: 1;}
 }
 
-/* ___________________________ OTRAS ___________________________ */
+/* _____________________________ BOTONES Y ANIMACIONES DE WIN, LOSE Y DRAW _____________________________ */
 
 .ResetButton{
     padding: 20px;
@@ -124,3 +126,25 @@ button:focus{outline: 0;}
     0%{max-height: 0%; opacity: 0;}
     100%{max-height: 20%; opacity: 1;}
 }
+
+/* _______________________________________ CUERPO Y ENCABEZADO _______________________________________ */
+
+body{
+    background: -webkit-linear-gradient(#356dc6, #285B8C, #104869);
+}
+
+#encabezado{
+    height: 20vh;
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+#encabezado>img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* __________________________________________ PIE DE PAGINA __________________________________________ */
+
+
