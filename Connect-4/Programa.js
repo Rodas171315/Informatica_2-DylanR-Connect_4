@@ -1,10 +1,12 @@
-function alert(){
+function Alert(){
     alert("Juega\nConecta con tus amigos!");
 }
 
-function prompt(){
+function Prompt(){
     var Player1 = prompt("Ingresa tu nombre jugador 1");
     var Player2 = prompt("Ingresa tu nombre jugador 2");
+    return Player1;
+    return Player2;
 }
 
 var Compu = "Cortana";
@@ -89,6 +91,11 @@ var lastCompuColumn = 0;
   //                             si la entrada == 1, está la ficha azul,
   //                             si la entrada == 2, está la ficha roja.
 
+    function Multiplayer(){
+        resetGame();
+        Prompt();
+    }
+
     function colocarFicha(column, turno){
         if(enabledClick==false && turno==0){
             return;
@@ -103,7 +110,7 @@ var lastCompuColumn = 0;
                 }else if(turno=1){
                     tablero[i][column]=2;   // escribe 2 si es el turno del jugador 2
                 }else{
-                    tablero[i][column]=3;    // escribe 3 si es el turno de la computadora
+                    tablero[i][column]=2;    // escribe 2 si es el turno de la computadora
                 }
 
                 insertarFicha(i, column, turno);{
