@@ -68,6 +68,7 @@
     text-align: center;
     margin-top: 20px;
     transition: padding 0.25s;
+    font-family: "Maven Pro";
 }
 button:focus{outline: 0;}
 
@@ -85,6 +86,7 @@ button:focus{outline: 0;}
     text-align: center;
     margin-top: 20px;
     transition: padding 0.25s;
+    font-family: "Maven Pro";
 }
 button:focus{outline: 0;}
 
@@ -131,6 +133,7 @@ button:focus{outline: 0;}
 
 body{
     background: -webkit-linear-gradient(#356dc6, #285B8C, #104869);
+    font-family: "Maven Pro";
 }
 
 #encabezado{
@@ -147,4 +150,39 @@ body{
 
 /* __________________________________________ PIE DE PAGINA __________________________________________ */
 
+.pie-de-pagina{
+    color: white;
+    font-family: "Maven Pro";
+    font-size: 17px;
+    padding: 40px;
+    background-image: url();
+    background-size: 100% 100%;
 
+    border-top: 20px solid white;
+    border-image: url() 60 round;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+    margin-top: 20px;
+}
+
+.copyright{
+    display: inline-block;
+    padding: 10px;
+}
+
+#mylogo{
+    margin-bottom: 4%;
+}
+
+@media screen and (orientation:landscape){
+    #matrix{
+        width: 65vh;
+        height: 65vh;
+        grid-gap: 0.5vw;
+    }
+
+    #arrows{
+        width: 65vh;
+    }
+}
