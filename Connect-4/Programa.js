@@ -180,8 +180,8 @@ var lastCompuColumn = 0;
             if (tablero[i][column]==0) {
                 return i;
             }
-            return 0;
-        }
+        } 
+        return 0;
     }
 
     function JugadorGanaArriba(row,column){
@@ -203,8 +203,8 @@ var lastCompuColumn = 0;
                     return false;
                 }
             }
-            return false;
         }
+        return false;
     }
 
     function CompuPuedeGanarSi(row,column){
@@ -233,9 +233,9 @@ var lastCompuColumn = 0;
                 if(count==4){
                     tablero[row][column]=0;
                     return true;
-                }else{
-                    count=0;
                 }
+            }else{
+                count=0;
             }
         }
 
@@ -328,9 +328,9 @@ var lastCompuColumn = 0;
                 if(count==4){
                     tablero[row][column]=0;
                     return true;
-                }else{
-                    count=0;
                 }
+            }else{
+                count=0;
             }
         }
         
@@ -551,9 +551,9 @@ var lastCompuColumn = 0;
                         // winSound.play();
                         Audio.winSound.play();
                         return true;
-                    }else{
-                        count=0;
                     }
+                }else{
+                    count=0;
                 }
             }
 
@@ -655,9 +655,9 @@ var lastCompuColumn = 0;
                         // winSound.play();
                         Audio.winSound.play();
                         return true;
-                    }else{
-                        count=0;
                     }
+                }else{
+                    count=0;
                 }
             }
 
@@ -759,9 +759,9 @@ var lastCompuColumn = 0;
                         // loseSound.play();
                         Audio.loseSound.play();
                         return true;
-                    }else{
-                        count=0;
                     }
+                }else{
+                    count=0;
                 }
             }
 

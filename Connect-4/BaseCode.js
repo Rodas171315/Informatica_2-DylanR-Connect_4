@@ -7,8 +7,8 @@ function PuedeColocarse(row, column, tablero) {
                 return false;
             }
         }
-        return false;
     }
+    return false;
 }
 module.exports.PuedeColocarse = PuedeColocarse;
 
@@ -28,14 +28,14 @@ function checkWinHorizontal(row, turno, tablero) {
 
     if (turno = 0) {
         // Horizontal
-        for (i = 0; i < 6; i++) {
+        for (i=0; i<6; i++) {
             if (tablero[row][i] == 1) {
                 count++;
                 if (count == 4) {
                     return true;
-                } else {
-                    count = 0;
                 }
+            }else{
+                return false;
             }
         }
     }
@@ -53,9 +53,9 @@ function checkWinVertical(column, turno, tablero) {
                 count++;
                 if (count == 4) {
                     return true;
-                } else {
-                    count = 0;
                 }
+            }else{
+                count = 0;
             }
         }
     }
@@ -129,7 +129,7 @@ module.exports.checkWinDiagonal = checkWinDiagonal;
 
 function resetGame(tablero) {
     for (i=0; i<2; i++) {
-        for (j = 0; j < 6; j++) {
+        for (j=0; j<6; j++) {
             tablero[i][j] = 0;
         }
     }

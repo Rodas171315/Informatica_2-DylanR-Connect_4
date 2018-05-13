@@ -32,4 +32,3 @@ var Tableros = Interface({
 var Ficha = Interface({
     color: type('var')
 })
-

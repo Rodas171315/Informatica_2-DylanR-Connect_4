@@ -13,6 +13,8 @@
 var mocha = require('mocha');
 var assert = require('assert');
 
+/*-------------------------------------------------- TESTS DE INTERFAZ -------------------------------------------------*/
+
 const {Jugador, IA, Frases, Tableros, Ficha} = require("../Programa");
 
 describe('Jugador', function() {
@@ -62,6 +64,8 @@ describe('Ficha', function() {
     });
 });
 
+/*-------------------------------------------------- TESTS DE FUNCIONES -------------------------------------------------*/
+
 describe('#colocarFicha()', function() {
     it('Si el jugador esta habilitado permite colocar una ficha', function() {
         ;
@@ -92,10 +96,10 @@ describe('#PuedeColocarse()', function() {
             [1,2,1,2,1,2],
             [1,2,1,2,1,2]
         ];
-        var row = tablerotest[2][0];
-        var column = tablerotest[0][2];
+        var rowtest = 2;
+        var columntest = 2;
 
-        var actual = PuedeColocarse(row, column, tablerotest);
+        var actual = PuedeColocarse(rowtest, columntest, tablerotest);
         var expected = true;
 
         assert.equal(actual, expected);
@@ -122,12 +126,6 @@ describe('#checkFull()', function() {
     });
 });
 
-describe('#checkWin()', function() {
-    it('Verifica si se gano en alguna fila o columna', function() {
-        ;
-    });
-});
-
 const {checkWinHorizontal} = require("../BaseCode");
 describe('#checkWinHorizontal()', function() {
     it('Verifica si se gano en alguna fila', function() {
@@ -141,9 +139,9 @@ describe('#checkWinHorizontal()', function() {
             [1,1,1,1,0,0]
         ];
 
-        var row = tablerotest[6][0];
-        var turno = 0;
-        var actual = checkWinHorizontal(row, turno, tablerotest);
+        var rowtest = 6;
+        var turnotest = 0;
+        var actual = checkWinHorizontal(rowtest, turnotest, tablerotest);
         var expected = true;
 
         assert.equal(actual,expected);
@@ -163,9 +161,9 @@ describe('#checkWinVertical()', function() {
             [1,2,2,2,0,0]
         ];
         
-        var column = tablerotest[0][0];
-        var turno = 0;
-        var actual = checkWinVertical(column, turno, tablerotest);
+        var columntest = 0;
+        var turnotest = 0;
+        var actual = checkWinVertical(columntest, turnotest, tablerotest);
         var expected = true;
 
         assert.equal(actual,expected);
@@ -185,8 +183,32 @@ describe('#checkWinDiagonal()', function() {
             [1,2,2,2,0,0]
         ];
         
-        var turno = 0;
-        var actual = checkWinDiagonal(turno, tablerotest);
+        var rowtest = 6;
+        var columntest = 0;
+        var turnotest = 0;
+        var actual = checkWinDiagonal(rowtest, columntest, turnotest, tablerotest);
+        var expected = true;
+
+        assert.equal(actual,expected);
+    });
+});
+
+describe('#checkWinDiagonal() 2', function() {
+    it('Verifica si se gano en alguna diagonal', function() {
+        var tablerotest = [
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,1,0,0,0],
+            [0,0,2,1,0,0],
+            [0,0,2,1,1,1],
+            [0,0,2,2,2,1]
+        ];
+        
+        var rowtest = 6;
+        var columntest = 5;
+        var turnotest = 0;
+        var actual = checkWinDiagonal(rowtest, columntest, turnotest, tablerotest);
         var expected = true;
 
         assert.equal(actual,expected);
@@ -206,12 +228,21 @@ describe('#resetGame()', function() {
             [0,0,0,0,0,0]
         ];
 
-        var actual = resetGame(tablerotest);
-        var expected = tablerotest2;
+        var reset = resetGame(tablerotest);
+        var expected = true;
+        var actual;
 
         // Hacer un ciclo
-        for(i=0; i<=2; i++){
-            assert.equal(actual, expected);
+        for(i=0; i<2; i++){
+            for(j=0; j<6; j++){
+                if(reset[i][j] = 0){
+                    actual = true;
+                }else{
+                    actual = false;
+                }
+            }
         }
+
+        assert.equal(actual,expected);
     });
 });
