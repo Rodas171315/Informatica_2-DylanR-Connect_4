@@ -111,12 +111,6 @@ describe('#ObtenerFila()', function() {
     });
 });
 
-describe('#randomTurno()', function() {
-    it('Realiza un turno aleatorio para la computadora', function() {
-        ;
-    });
-});
-
 const {PuedeColocarse} = require("../BaseCode");
 describe('#PuedeColocarse()', function() {
     it('Verifica si se puede colocar la ficha en la posicion solicitada', function() {
@@ -139,11 +133,55 @@ describe('#PuedeColocarse()', function() {
     });
 });
 
+const {JugadorPuedeGanarSi} = require("../BaseCode");
+describe('#JugadorPuedeGanarSi()', function() {
+    it('Verifica si el jugador puede llegar a ganar si se realiza algun turno especifico', function() {
+        var tablerotest = [
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,2],
+            [0,0,0,0,0,1],
+            [0,2,2,2,1,1],  // <-- Se busca verificar que el Jugador al mover en el 
+            [1,1,2,2,2,1]   //     primer elemento de esta fila no gana
+        ];
+
+        var rowtest = 6;
+        var columntest = 0;
+        turnotest = 0;
+        var actual = JugadorPuedeGanarSi(rowtest, columntest, turnotest, tablerotest);
+        var expected = false;
+        assert.equal(actual, expected);        
+    });
+});
+
+const {CompuPuedeGanarSi} = require("../BaseCode");
+describe('#CompuPuedeGanarSi()', function() {
+    it('Verifica si la computadora puede llegar a ganar si se realiza algun turno especifico', function() {
+        var tablerotest = [
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [1,2,1,1,1,0],  // <-- Se busca verificar que la Computadora al mover en el
+            [2,1,2,2,2,1]   //     ultimo elemento de esta fila no gana
+        ];
+
+        var rowtest = 5;
+        var columntest = 5;
+        turnotest = 1;
+        var actual = CompuPuedeGanarSi(rowtest, columntest, turnotest, tablerotest);
+        var expected = false;
+        assert.equal(actual, expected);
+    });
+});
+
 const{checkFull} = require("../BaseCode");
 describe('#checkFull()', function() {
-    it('Retorna false si el tablero esta vacio o true si esta lleno', function() {
+    it('Verifica si el tablero esta lleno o si aun hay elementos vacios', function() {
         var tablerotest = [
-            [1,2,1,2,1,2],
+            [1,2,1,2,1,2],  // <-- Se busca verificar que en efecto, el tablero esta lleno
             [2,1,2,1,2,1],
             [2,1,2,1,2,1],
             [2,1,2,1,2,1],
@@ -169,7 +207,7 @@ describe('#checkWinHorizontal()', function() {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
             [2,2,2,0,0,0],
-            [1,1,1,1,0,0]
+            [1,1,1,1,0,0]   // <-- Se busca verificar que en esta fila ya se consiguio la victoria
         ];
 
         var rowtest = 6;
@@ -188,7 +226,7 @@ describe('#checkWinVertical()', function() {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
-            [1,0,0,0,0,0],
+            [1,0,0,0,0,0],  // <-- Se busca verificar que en la primera columna ya se consiguio la victoria
             [1,0,0,0,0,0],
             [1,0,0,0,0,0],
             [1,2,2,2,0,0]
@@ -210,7 +248,7 @@ describe('#checkWinDiagonal()', function() {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
-            [0,0,0,1,0,0],
+            [0,0,0,1,0,0],  // <-- Se busca verificar que en la primera diagonal ya se consiguio la victoria
             [0,0,1,2,0,0],
             [1,1,1,2,0,0],
             [1,2,2,2,0,0]
@@ -232,7 +270,7 @@ describe('#checkWinDiagonal() 2', function() {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
-            [0,0,1,0,0,0],
+            [0,0,1,0,0,0],  // <-- Se busca verificar que en la segunda diagonal ya se consiguio la victoria
             [0,0,2,1,0,0],
             [0,0,2,1,1,1],
             [0,0,2,2,2,1]
@@ -257,8 +295,8 @@ describe('#resetGame()', function() {
             [2,1,2,1,2,1],
             [2,1,2,1,2,1],
             [1,2,1,2,1,2],
-            [1,2,1,2,1,2],
-            [1,2,1,2,1,2]
+            [1,2,1,2,1,2],  // <-- Se busca convertir nuevamente todos los elementos de los arreglos a 0,
+            [1,2,1,2,1,2]   //     como en el tablero demostrado a continuacion
         ];
 
         var tableroExpected = [

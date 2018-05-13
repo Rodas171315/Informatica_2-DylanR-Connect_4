@@ -73,14 +73,14 @@ function Audio(){
     var blopSound = new Audio('Audio/blop.mp3');
 }
 
-var Compu = "Cortana";
+var Compu = new IA("Cortana", 10, "Chief, can u hear me?");
 
 var enabledClick = true;
 var gameover = false;
 var CompuYaJugo = false;
 
-var lastPlayer1Row = 0;
-var lastPlayer1Column = 0;
+var lastPlayerRow = 0;
+var lastPlayerColumn = 0;
 
 var lastCompuRow = 0;
 var lastCompuColumn = 0;
@@ -138,8 +138,8 @@ function colocarFicha(column, turno){
         var x = document.getElementById(finalID);
         if(turno==0){
             x.innerHTML="<img src='Resource/blue.png' class='ficha'>";
-            lastPlayer1Row = row;
-            lastPlayer1Column = column;           
+            lastPlayerRow = row;
+            lastPlayerColumn = column;           
         }else{
             x.innerHTML="<img src='Resource/red.png' class='ficha'>";
             lastCompuRow = row;
@@ -423,7 +423,7 @@ function colocarFicha(column, turno){
             }
         }
         
-        // PREVIENE EL TRUCO CON 3 FICHAS SUCESIVAS, EN UN CAMPO DE AMBOS LADOS (TANTO IZQUIERDO Y DERECHO)
+        // PREVIENE EL TRUCO DE 3 FICHAS SUCESIVAS, EN UN CAMPO DE AMBOS LADOS (TANTO IZQUIERDO Y DERECHO)
         var trickCount = 0;
         var LadoIzq = 0;
         var LadoDer = 0;
@@ -432,7 +432,7 @@ function colocarFicha(column, turno){
 
         for(i=1; i<5; i++)
         {
-            if(tablero[lastPlayer1Row][i]==1){
+            if(tablero[lastPlayerRow][i]==1){
                 if(LadoIzq==0){
                     LadoIzq = i;
                 }
@@ -448,12 +448,12 @@ function colocarFicha(column, turno){
             }
         }
         if(trickFound){
-            if(tablero[lastPlayer1Row][LadoIzq-1]==0 && tablero[lastPlayer1Row][LadoDer+1]==0 && tablero[lastPlayer1Row][LadoDer+2]==0)
+            if(tablero[lastPlayerRow][LadoIzq-1]==0 && tablero[lastPlayerRow][LadoDer+1]==0 && tablero[lastPlayerRow][LadoDer+2]==0)
             {
                 colocarFicha(LadoIzq-1,1);
                 return;
             }
-            if(tablero[lastPlayer1Row][LadoIzq-1]==0 && tablero[lastPlayer1Row][LadoDer+1]==0 && tablero[lastPlayer1Row][LadoDer+2]==0)
+            if(tablero[lastPlayerRow][LadoIzq-1]==0 && tablero[lastPlayerRow][LadoDer+1]==0 && tablero[lastPlayerRow][LadoDer+2]==0)
             {
                 colocarFicha(LadoIzq-1);
                 return;
@@ -519,7 +519,7 @@ function colocarFicha(column, turno){
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
-                        x.innerHTML= Player1 + "gano!";
+                        x.innerHTML= Player1.nombre + "gano!";
                         Audio.winSound.play();
                         return true;
                     }
@@ -536,7 +536,7 @@ function colocarFicha(column, turno){
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
-                        x.innerHTML= Player1 + "gano!";
+                        x.innerHTML= Player1.nombre + "gano!";
                         Audio.winSound.play();
                         return true;
                     }
@@ -585,7 +585,7 @@ function colocarFicha(column, turno){
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
-                        x.innerHTML= Player1 + "gano!";
+                        x.innerHTML= Player1.nombre + "gano!";
                         Audio.winSound.play();
                         return true;
                     }
@@ -601,7 +601,7 @@ function colocarFicha(column, turno){
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
-                        x.innerHTML= Player1 + "gano!";
+                        x.innerHTML= Player1.nombre + "gano!";
                         Audio.winSound.play();
                         return true;
                     }
@@ -621,7 +621,7 @@ function colocarFicha(column, turno){
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("lose");
-                        x.innerHTML= Compu + "gano!";
+                        x.innerHTML= Compu.nombre + "gano!";
                         Audio.loseSound.play();
                         return true;
                     }
@@ -638,7 +638,7 @@ function colocarFicha(column, turno){
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("lose");
-                        x.innerHTML= Compu + "gano";
+                        x.innerHTML= Compu.nombre + "gano";
                         Audio.loseSound.play();
                         return true;
                     }
@@ -687,7 +687,7 @@ function colocarFicha(column, turno){
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("lose");
-                        x.innerHTML= Compu + "gano!";
+                        x.innerHTML= Compu.nombre + "gano!";
                         Audio.loseSound.play();
                         return true;
                     }
@@ -703,7 +703,7 @@ function colocarFicha(column, turno){
                     if(count==4){
                         var x = document.getElementById("gameover");
                         x.classList.add("lose");
-                        x.innerHTML= Compu + "gano!";
+                        x.innerHTML= Compu.nombre + "gano!";
                         Audio.loseSound.play();
                         return true;
                     }
