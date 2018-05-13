@@ -2,6 +2,8 @@ function Alert(){
     alert("Juega\nConecta con tus amigos!");
 }
 
+// ----- Iniciadores -----
+
 function Jugador(edad, nombre, frase){
     this.edad = edad;
     this.nombre = nombre;
@@ -46,9 +48,6 @@ module.exports.Ficha = Ficha;
 //    }
 // };
 
-// Alert();
-// Prompt();
-
 function Prompt(){
     var nombre = prompt("Ingresa tu nombre jugador");
     var edad = prompt("Ingresa tu edad jugador");
@@ -56,6 +55,9 @@ function Prompt(){
     var Player1 = new Jugador(edad, nombre, frase);
     return Player1;
 }
+
+// Alert();
+// Prompt();
 
 var tablero = [
     [0,0,0,0,0,0],
@@ -97,7 +99,7 @@ function Multiplayer(){
 
 function colocarFicha(column, turno){
     if(enabledClick==false && turno==0){
-    return;
+        return;
     }
     
     enabledClick=false;
@@ -724,24 +726,24 @@ function colocarFicha(column, turno){
                 var x = document.getElementById(finalID);
                 x.innerHTML='<img src="Resource/empty.png" class="empty">';
             }
-            gameover = false;
-            enabledClick = true;
-            CompuYaJugo = false;
-
-            var x = document.getElementById("gameover");
-            x.innerHTML = " ";
-            x.classList.remove("win");
-            x.classList.remove("lose");
-            x.classList.remove("draw");
-            // winSound.pause();
-            Audio.winSound.pause();
-            // loseSound.pause();
-            Audio.loseSound.pause();
-            // winSound.currentTime = 0;
-            Audio.winSound.currentTime = 0;
-            // loseSound.currentTime = 0;
-            Audio.loseSound.currentTime = 0;
         }
+        gameover = false;
+        enabledClick = true;
+        CompuYaJugo = false;
+
+        var x = document.getElementById("gameover");
+        x.innerHTML = " ";
+        x.classList.remove("win");
+        x.classList.remove("lose");
+        x.classList.remove("draw");
+        // winSound.pause();
+        Audio.winSound.pause();
+        // loseSound.pause();
+        Audio.loseSound.pause();
+        // winSound.currentTime = 0;
+        Audio.winSound.currentTime = 0;
+        // loseSound.currentTime = 0;
+        Audio.loseSound.currentTime = 0;
     }
 
 /* _____________________________________________ FIN DE SOLOGAME _____________________________________________ */

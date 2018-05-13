@@ -6,7 +6,7 @@
 	</title>
 
 	<link href="Estilo.css" rel="stylesheet">
-    <script src="Programa.js"></script>
+    <script src="VsPlayer.js"></script>
     <link rel="icon" href="Resource/spartan-logo.png">
     <!-- FONTS -->
     <link herf="https://fonts.googleapis.com/css?family=Maven+Pro|Bungee+Inline|Catamaran:800" rel="stylesheet">
@@ -26,6 +26,15 @@
         <div onclick="colocarFicha(4,0)"><img src="Resource/arrowdown.png" class="empty"></div>
         <div onclick="colocarFicha(5,0)"><img src="Resource/arrowdown.png" class="empty"></div>
     </div>
+
+    <div id="arrows">
+        <div onclick="colocarFicha(0,1)"><img src="Resource/arrowdown.png" class="empty"></div>
+        <div onclick="colocarFicha(1,1)"><img src="Resource/arrowdown.png" class="empty"></div>
+        <div onclick="colocarFicha(2,1)"><img src="Resource/arrowdown.png" class="empty"></div>
+        <div onclick="colocarFicha(3,1)"><img src="Resource/arrowdown.png" class="empty"></div>
+        <div onclick="colocarFicha(4,1)"><img src="Resource/arrowdown.png" class="empty"></div>
+        <div onclick="colocarFicha(5,1)"><img src="Resource/arrowdown.png" class="empty"></div>
+    </div>    
 
     <div id="matrix">
         <!-- LINEA 0 -->
@@ -89,7 +98,7 @@
     <div id="Buttons">
         <center>
             <button class="ResetButton" onclick="resetGame()"> Reiniciar </button>
-            <button class="MultiButton" onclick="Multiplayer()"> Multijugador </button>
+            <button class="SoloButton" onclick="SoloGame()"> Un Jugador </button>
         </center>
     </div>
     <div id="gameover"></div>
