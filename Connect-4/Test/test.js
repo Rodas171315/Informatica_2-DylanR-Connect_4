@@ -1,12 +1,11 @@
+// /*-------------------------------------------------- REFERENCIAS -------------------------------------------------*/
 // http://www.chaijs.com/
 // https://mochajs.org/
 
-//    Programa = require('../Programa'),
-//    assert = mocha.assert;
-//
-//describe('Prueba de Metodos con el Programa()', function() {
-//   it('Prueba de checkFull()', function() {
-//       assert.equal(Programa.checkFull([[1,2,1,2,1,2],[2,1,2,1,2,1],[1,2,1,2,1,2],[2,1,2,1,2,1],[1,2,1,2,1,2],[2,1,2,1,2,1],[1,2,1,2,1,2]]), true);
+// const {Algo} = require('../Programa');
+//describe('Nombre del Metodo()', function() {
+//   it('Descripcion de su proposito', function() {
+//       assert.equal(actual,expected);
 //    });
 //});
 
@@ -66,15 +65,49 @@ describe('Ficha', function() {
 
 /*-------------------------------------------------- TESTS DE FUNCIONES -------------------------------------------------*/
 
+const {colocarFicha} = require("../BaseCode");
 describe('#colocarFicha()', function() {
     it('Si el jugador esta habilitado permite colocar una ficha', function() {
-        ;
+        var tablerotest = [
+            [0,0,0,0,0,0],  // <-- Con el jugador habilitado se busca colocar la ficha del jugador en
+            [2,1,2,1,2,1],  //     el quinto elemento de este arreglo
+            [2,1,2,1,2,1],
+            [2,1,2,1,2,1],
+            [1,2,1,2,1,2],
+            [1,2,1,2,1,2],
+            [1,2,1,2,1,2]
+        ];
+
+        enabledClicktest = true;
+        var columntest = 4;
+        var turnotest = 0;
+        colocarFicha(columntest, turnotest, tablerotest, enabledClicktest);
+
+        var actual = tablerotest[0][4];
+        var expected = 1;
+
+        assert.equal(actual, expected);
     });
 });
 
-describe('#insertarFicha()', function() {
-    it('Inserta la ficha en el tablero', function() {
-        ;
+const {ObtenerFila} = require("../BaseCode");
+describe('#ObtenerFila()', function() {
+    it('Solicita una fila disponible para que la IA pueda realizar su turno', function() {
+        var tablerotest = [
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [2,1,0,1,2,1],  // <-- Se busca obtener esta fila como disponible para colocar la ficha del turno de la IA
+            [1,2,1,2,1,2],
+            [1,2,1,2,1,2],
+            [1,2,1,2,1,2]
+        ];
+
+        var columntest = 2;
+        var actual = ObtenerFila(columntest, tablerotest);
+        var expected = 3;
+
+        assert.equal(actual, expected);
     });
 });
 
@@ -90,15 +123,15 @@ describe('#PuedeColocarse()', function() {
         var tablerotest = [
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
+            [0,0,0,0,0,0], // <-- Se busca verificar el tercer elemento de este arreglo
             [2,1,2,1,2,1],
             [1,2,1,2,1,2],
             [1,2,1,2,1,2],
             [1,2,1,2,1,2]
         ];
+        
         var rowtest = 2;
         var columntest = 2;
-
         var actual = PuedeColocarse(rowtest, columntest, tablerotest);
         var expected = true;
 
@@ -220,10 +253,20 @@ describe('#resetGame()', function() {
     it('Reinicia el juego', function() {
         var tablerotest = [
             [0,0,0,0,0,0],
-            [2,1,2,1,2,1]
+            [2,1,2,1,2,1],
+            [2,1,2,1,2,1],
+            [2,1,2,1,2,1],
+            [1,2,1,2,1,2],
+            [1,2,1,2,1,2],
+            [1,2,1,2,1,2]
         ];
 
-        var tablerotest2 = [
+        var tableroExpected = [
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0]
         ];
@@ -233,7 +276,7 @@ describe('#resetGame()', function() {
         var actual;
 
         // Verifica que cada valor de tablero sea igual a 0
-        for(i=0; i<2; i++){
+        for(i=0; i<7; i++){
             for(j=0; j<6; j++){
                 if(reset[i][j] == 0){
                     actual = true;

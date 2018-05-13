@@ -2,11 +2,6 @@ function Alert(){
     alert("Juega\nConecta con tus amigos!");
 }
 
-function Prompt(){
-    var Player1 = prompt("Ingresa tu nombre jugador 1");
-    return Player1;
-}
-
 function Jugador(edad, nombre, frase){
     this.edad = edad;
     this.nombre = nombre;
@@ -49,10 +44,18 @@ module.exports.Ficha = Ficha;
 //    else {
 //    alert("Quieres la revancha verdad?");
 //    }
-//};
+// };
 
 // Alert();
 // Prompt();
+
+function Prompt(){
+    var nombre = prompt("Ingresa tu nombre jugador");
+    var edad = prompt("Ingresa tu edad jugador");
+    var frase = prompt("Ingresa tu grito de batalla jugador");
+    var Player1 = new Jugador(edad, nombre, frase);
+    return Player1;
+}
 
 var tablero = [
     [0,0,0,0,0,0],
@@ -740,3 +743,5 @@ function colocarFicha(column, turno){
             Audio.loseSound.currentTime = 0;
         }
     }
+
+/* _____________________________________________ FIN DE SOLOGAME _____________________________________________ */

@@ -44,8 +44,9 @@ var lastPlayer2Column = 0;
 //                             si la entrada == 1, está la ficha azul,
 //                             si la entrada == 2, está la ficha roja.
 
-
 function SoloGame()
 {
     resetGame();
 }
+
+/* _____________________________________________ FIN DE MULTIPLAYER _____________________________________________ */

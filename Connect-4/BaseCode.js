@@ -1,3 +1,35 @@
+function colocarFicha(column, turno, tablero, enabledClick){
+    if(enabledClick==false && turno==0){
+        return;
+    }
+        
+    enabledClick=false;
+    
+    for(i=6; i>=0; i--){
+        if(tablero[i][column]==0){      // cuando el punto mas bajo esta vacio
+            if(turno==0){
+                tablero[i][column]=1;   // escribe 1 si es el turno del jugador 1
+            }else{
+                tablero[i][column]=2;   // escribe 2 si es el turno de la computadora
+            }
+            return; 
+        }
+    }
+    enabledClick=true;    
+}
+module.exports.colocarFicha = colocarFicha;
+
+function ObtenerFila(column, tablero){
+    for(i=6; i>=0; i--)
+    {
+        if (tablero[i][column]==0) {
+            return i;
+        }
+    } 
+    return 0;
+}
+module.exports.ObtenerFila = ObtenerFila;
+
 function PuedeColocarse(row, column, tablero) {
     for (i=6; i>=0; i--) {
         if (tablero[i][column] == 0) {
@@ -128,7 +160,7 @@ function checkWinDiagonal(row, column, turno, tablero) {
 module.exports.checkWinDiagonal = checkWinDiagonal;
 
 function resetGame(tablero) {
-    for (i=0; i<2; i++) {
+    for (i=0; i<7; i++) {
         for (j=0; j<6; j++) {
             tablero[i][j] = 0;
         }
