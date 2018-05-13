@@ -26,7 +26,7 @@ function checkWinHorizontal(row, turno, tablero) {
 
     var count = 0; // Se debe llegar a 4 fichas consecutivas
 
-    if (turno = 0) {
+    if (turno == 0) {
         // Horizontal
         for (i=0; i<6; i++) {
             if (tablero[row][i] == 1) {
@@ -35,7 +35,7 @@ function checkWinHorizontal(row, turno, tablero) {
                     return true;
                 }
             }else{
-                return false;
+                count = 0;
             }
         }
     }
@@ -46,9 +46,9 @@ function checkWinVertical(column, turno, tablero) {
 
     var count = 0; // Se debe llegar a 4 fichas consecutivas
 
-    if (turno = 0) {
+    if (turno == 0) {
         // Vertical
-        for (i = 0; i < 7; i++) {
+        for (i=0; i<7; i++) {
             if (tablero[i][column] == 1) {
                 count++;
                 if (count == 4) {
@@ -64,7 +64,7 @@ module.exports.checkWinVertical = checkWinVertical;
 
 function checkWinDiagonal(row, column, turno, tablero) {
     
-    if (turno = 0) {
+    if (turno == 0) {
         // Diagonal
         count = 0;
         var diagonal1 = [];

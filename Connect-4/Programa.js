@@ -4,12 +4,8 @@ function Alert(){
 
 function Prompt(){
     var Player1 = prompt("Ingresa tu nombre jugador 1");
-    var Player2 = prompt("Ingresa tu nombre jugador 2");
     return Player1;
-    return Player2;
 }
-
-var Compu = "Cortana";
 
 function Jugador(edad, nombre, frase){
     this.edad = edad;
@@ -55,6 +51,9 @@ module.exports.Ficha = Ficha;
 //    }
 //};
 
+// Alert();
+// Prompt();
+
 var tablero = [
     [0,0,0,0,0,0],
     [0,0,0,0,0,0],
@@ -71,6 +70,8 @@ function Audio(){
     var blopSound = new Audio('Audio/blop.mp3');
 }
 
+var Compu = "Cortana";
+
 var enabledClick = true;
 var gameover = false;
 var CompuYaJugo = false;
@@ -78,65 +79,56 @@ var CompuYaJugo = false;
 var lastPlayer1Row = 0;
 var lastPlayer1Column = 0;
 
-var lastPlayer2Row = 0;
-var lastPlayer2Column = 0;
-
 var lastCompuRow = 0;
 var lastCompuColumn = 0;
 
-  // turno = indica quién está jugando (si es el turno del jugador 1, cambia == 0, 
-  //                                    si es el turno del jugador 2, cambia == 1,
-  //                                    si la computadora está encendida, cambia == 2)
-  // en la matriz "tablero" ---> si la entrada == 0, entonces el lugar está vacío,
-  //                             si la entrada == 1, está la ficha azul,
-  //                             si la entrada == 2, está la ficha roja.
+// turno = indica quién está jugando (si es el turno del jugador 1, cambia == 0,
+//                                    si la computadora está encendida, cambia == 1)
+// en la matriz "tablero" ---> si la entrada == 0, entonces el lugar está vacío,
+//                             si la entrada == 1, está la ficha azul,
+//                             si la entrada == 2, está la ficha roja.
 
-    function Multiplayer(){
-        resetGame();
-        Prompt();
+function Multiplayer(){
+    resetGame();
+}
+
+function colocarFicha(column, turno){
+    if(enabledClick==false && turno==0){
+    return;
     }
-
-    function colocarFicha(column, turno){
-        if(enabledClick==false && turno==0){
-            return;
-        }
     
-        enabledClick=false;
+    enabledClick=false;
 
-        for(i=6; i>=0; i--){
-            if(tablero[i][column]==0){      // cuando el punto mas bajo esta vacio
-                if(turno=0){
-                    tablero[i][column]=1;   // escribe 1 si es el turno del jugador 1
-                }else if(turno=1){
-                    tablero[i][column]=2;   // escribe 2 si es el turno del jugador 2
+    for(i=6; i>=0; i--){
+        if(tablero[i][column]==0){      // cuando el punto mas bajo esta vacio
+            if(turno==0){
+                tablero[i][column]=1;   // escribe 1 si es el turno del jugador 1
+            }else{
+                tablero[i][column]=2;   // escribe 2 si es el turno de la computadora
+            }
+
+            insertarFicha(i, column, turno);
+            if(turno==0 && !gameover){
+                setTimeout(Computurno,1000);
+            }else{
+                if(gameover){
+                    enabledClick = false;
                 }else{
-                    tablero[i][column]=2;    // escribe 2 si es el turno de la computadora
+                    enabledClick=true;
                 }
-
-                insertarFicha(i, column, turno);{
-                    if(turno==0 && !gameover){
-                        setTimeout(Computurno,1000);
-                    }else{
-                        if(gameover){
-                            enabledClick = false;
-                        }else{
-                            enabledClick=true;
-                        }
-                    }
-                }
-                return;
             }
-
-            if(turno!=0){
-                randomTurno();
-            }
-            enabledClick=true;
+            return; 
         }
-
     }
 
-    // La propiedad innerHTML establece o devuelve el contenido HTML de un elemento.
-    // getElementById encuentra elemento por id
+    if(turno!=0){
+        randomTurno();
+    }
+    enabledClick=true;
+}
+
+// La propiedad innerHTML establece o devuelve el contenido HTML de un elemento.
+// getElementById encuentra elemento por id
 
     function insertarFicha(row, column, turno){
         var finalID = row.toString().concat(column.toString());
@@ -144,17 +136,12 @@ var lastCompuColumn = 0;
         if(turno==0){
             x.innerHTML="<img src='Resource/blue.png' class='ficha'>";
             lastPlayer1Row = row;
-            lastPlayer1Column = column;
-        }else if(turno==1){
-            x.innerHTML="<img src='Resource/red.png' class='ficha'>";
-            lastPlayer2Row = row;
-            lastPlayer2Column = column;            
+            lastPlayer1Column = column;           
         }else{
             x.innerHTML="<img src='Resource/red.png' class='ficha'>";
             lastCompuRow = row;
             lastCompuColumn = column;            
         }
-        // blopSound.play();
         Audio.blopSound.play();
 
         gameover=checkWin(row, column, turno);
@@ -171,7 +158,7 @@ var lastCompuColumn = 0;
             randomTurno();
             return;
         }
-        colocarFicha(randomColumn, 2);
+        colocarFicha(randomColumn, 1);
     }
 
     function ObtenerFila(column){
@@ -196,7 +183,7 @@ var lastCompuColumn = 0;
         for(i=6; i>=0; i--)
         {
             if (tablero[i][column]==0) {
-                if (row==i) {
+                if(row==i){
                     return true;
                 }
                 else{
@@ -252,7 +239,7 @@ var lastCompuColumn = 0;
             i--;
         }
         // Empuja los elementos de la primera diagonal hacia la matriz
-        while (i<=6 && j<=5) {
+        while (i<=6 && j<=5){
             diagonal1.push(tablero[i][j]);
             i++;
             j++;
@@ -266,7 +253,7 @@ var lastCompuColumn = 0;
             j--;
         }
         // Empuja los elementos de la segunda diagonal hacia la matriz
-        while (i>=0 && j<=5) {
+        while (i>=0 && j<=5){
             diagonal2.push(tablero[i][j]);
             i--;
             j++;
@@ -347,7 +334,7 @@ var lastCompuColumn = 0;
             i--;
         }
         // Empuja los elementos de la primera diagonal hacia la matriz
-        while (i<=6 && j<=5) {
+        while (i<=6 && j<=5){
             diagonal1.push(tablero[i][j]);
             i++;
             j++;
@@ -361,7 +348,7 @@ var lastCompuColumn = 0;
             j--;
         }
         // Empuja los elementos de la segunda diagonal hacia la matriz
-        while (i>=0 && j<=5) {
+        while (i>=0 && j<=5){
             diagonal2.push(tablero[i][j]);
             i--;
             j++;
@@ -410,9 +397,9 @@ var lastCompuColumn = 0;
         {
             for(x=5; x>=0; x--)
             {
-                if(tablero[w][x]==0) {
-                    if(CompuPuedeGanarSi(w,x) && PuedeColocarse(w,x)) {
-                        colocarFicha(x,2);
+                if(tablero[w][x]==0){
+                    if(CompuPuedeGanarSi(w,x) && PuedeColocarse(w,x)){
+                        colocarFicha(x,1);
                         return;
                     }
                 }
@@ -424,9 +411,9 @@ var lastCompuColumn = 0;
         {
             for(x=5; x>=0; x--)
             {
-                if(tablero[w][x]==0) {
-                    if(JugadorPuedeGanarSi(w,x) && PuedeColocarse(w,x)) {
-                        colocarFicha(x,2);
+                if(tablero[w][x]==0){
+                    if(JugadorPuedeGanarSi(w,x) && PuedeColocarse(w,x)){
+                        colocarFicha(x,1);
                         return;
                     }
                 }
@@ -460,7 +447,7 @@ var lastCompuColumn = 0;
         if(trickFound){
             if(tablero[lastPlayer1Row][LadoIzq-1]==0 && tablero[lastPlayer1Row][LadoDer+1]==0 && tablero[lastPlayer1Row][LadoDer+2]==0)
             {
-                colocarFicha(LadoIzq-1,2);
+                colocarFicha(LadoIzq-1,1);
                 return;
             }
             if(tablero[lastPlayer1Row][LadoIzq-1]==0 && tablero[lastPlayer1Row][LadoDer+1]==0 && tablero[lastPlayer1Row][LadoDer+2]==0)
@@ -478,7 +465,7 @@ var lastCompuColumn = 0;
                     return;
                 } // ¿Permitirá la computadora que el jugador gane con este movimiento? Si es así, lo evitamos y hacemos un movimiento aleatorio con randomTurn();
                 
-                colocarFicha(lastCompuColumn+1,2);
+                colocarFicha(lastCompuColumn+1,1);
                 return;
             }
         }
@@ -491,7 +478,7 @@ var lastCompuColumn = 0;
                     return;
                 }
 
-                colocarFicha(i,2);
+                colocarFicha(i,1);
                 return;
             }
         }
@@ -520,7 +507,7 @@ var lastCompuColumn = 0;
         var count = 0; // Se debe llegar a 4 fichas consecutivas
 
         // ------------------------ SI EL JUGADOR 1 GANO ------------------------------
-        if(turno=0)
+        if(turno==0)
         {
             // Horizontal
             for(i=0; i<6; i++){
@@ -530,7 +517,6 @@ var lastCompuColumn = 0;
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
                         x.innerHTML= Player1 + "gano!";
-                        // winSound.play();
                         Audio.winSound.play();
                         return true;
                     }
@@ -548,7 +534,6 @@ var lastCompuColumn = 0;
                         var x = document.getElementById("gameover");
                         x.classList.add("win");
                         x.innerHTML= Player1 + "gano!";
-                        // winSound.play();
                         Audio.winSound.play();
                         return true;
                     }
@@ -623,110 +608,6 @@ var lastCompuColumn = 0;
             }            
         }
 
-        // ------------------------ SI EL JUGADOR 2 GANO ------------------------------
-        else if(turno=1)
-        {
-            // Horizontal
-            for(i=0; i<6; i++){
-                if(tablero[row][i]==2){
-                    count++;
-                    if(count==4){
-                        var x = document.getElementById("gameover");
-                        x.classList.add("win");
-                        x.innerHTML= Player2 + "gano!";
-                        // winSound.play();
-                        Audio.winSound.play();
-                        return true;
-                    }
-                }else{
-                    count = 0;
-                }
-            }
-
-            // Vertical
-            count = 0;
-            for(i=0; i<7; i++){
-                if(tablero[i][column]==2){
-                    count++;
-                    if(count==4){
-                        var x = document.getElementById("gameover");
-                        x.classList.add("win");
-                        x.innerHTML= Player2 + "gano";
-                        // winSound.play();
-                        Audio.winSound.play();
-                        return true;
-                    }
-                }else{
-                    count=0;
-                }
-            }
-
-            // Diagonal
-            count = 0;
-            var diagonal1 = [];
-            var diagonal2 = [];
-
-            // Principio de la primera diagonal
-            var i = row;
-            var j = column;
-            while (i>0 && j>0){
-                j--;
-                i--;
-            }
-            // Empuja los elementos de la primera diagonal hacia la matriz
-            while (i<=6 && j<=5) {
-                diagonal1.push(tablero[i][j]);
-                i++;
-                j++;
-            }
-
-            // Principio de la segunda diagonal
-            var i = row;
-            var j = column;
-            while (i<6 && j>0){
-                i++;
-                j--;
-            }
-            // Empuja los elementos de la segunda diagonal hacia la matriz
-            while (i>=0 && j<=5) {
-                diagonal2.push(tablero[i][j]);
-                i--;
-                j++;
-            }
-            
-            // Comprueba si tenemos cuatro fichas consecutivas en la primera diagonal
-            for(q=0; q<diagonal1.length; q++){
-                if(diagonal1[q]==2){
-                    count++;
-                    if(count==4){
-                        var x = document.getElementById("gameover");
-                        x.classList.add("win");
-                        x.innerHTML= Player2 + "gano!";
-                        Audio.winSound.play();
-                        return true;
-                    }
-                }else{
-                    count = 0;
-                }
-            }
-            // Comprueba si tenemos cuatro fichas consecutivas en la segunda diagonal
-            count = 0;
-            for(q=0; q<diagonal2.length; q++){
-                if(diagonal2[q]==2){
-                    count++;
-                    if(count==4){
-                        var x = document.getElementById("gameover");
-                        x.classList.add("win");
-                        x.innerHTML= Player2 + "gano!";
-                        Audio.winSound.play();
-                        return true;
-                    }
-                }else{
-                    count = 0;
-                }
-            }            
-        }
-
         // ------------------------ SI LA IA GANO ------------------------------
         else
         {
@@ -738,7 +619,6 @@ var lastCompuColumn = 0;
                         var x = document.getElementById("gameover");
                         x.classList.add("lose");
                         x.innerHTML= Compu + "gano!";
-                        // loseSound.play();
                         Audio.loseSound.play();
                         return true;
                     }
@@ -756,7 +636,6 @@ var lastCompuColumn = 0;
                         var x = document.getElementById("gameover");
                         x.classList.add("lose");
                         x.innerHTML= Compu + "gano";
-                        // loseSound.play();
                         Audio.loseSound.play();
                         return true;
                     }

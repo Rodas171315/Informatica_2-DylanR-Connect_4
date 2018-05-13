@@ -172,7 +172,7 @@ describe('#checkWinVertical()', function() {
 
 const {checkWinDiagonal} = require("../BaseCode");
 describe('#checkWinDiagonal()', function() {
-    it('Verifica si se gano en alguna diagonal', function() {
+    it('Verifica si se gano en la primera diagonal', function() {
         var tablerotest = [
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
@@ -194,7 +194,7 @@ describe('#checkWinDiagonal()', function() {
 });
 
 describe('#checkWinDiagonal() 2', function() {
-    it('Verifica si se gano en alguna diagonal', function() {
+    it('Verifica si se gano en la segunda diagonal', function() {
         var tablerotest = [
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
@@ -232,10 +232,10 @@ describe('#resetGame()', function() {
         var expected = true;
         var actual;
 
-        // Hacer un ciclo
+        // Verifica que cada valor de tablero sea igual a 0
         for(i=0; i<2; i++){
             for(j=0; j<6; j++){
-                if(reset[i][j] = 0){
+                if(reset[i][j] == 0){
                     actual = true;
                 }else{
                     actual = false;
