@@ -48,10 +48,6 @@ var lastPlayer2Column = 0;
 //                             si la entrada == 1, está la ficha azul,
 //                             si la entrada == 2, está la ficha roja.
 
-function SoloGame(){
-    resetGame();
-}
-
 function colocarFicha(column, turno){
 
     for(i=6; i>=0; i--){

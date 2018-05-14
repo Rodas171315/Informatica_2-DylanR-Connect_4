@@ -69,8 +69,8 @@ const {colocarFicha} = require("../BaseCode");
 describe('#colocarFicha()', function() {
     it('Si el jugador esta habilitado permite colocar una ficha', function() {
         var tablerotest = [
-            [0,0,0,0,0,0],  // <-- Con el jugador habilitado se busca colocar la ficha del jugador en
-            [2,1,2,1,2,1],  //     el quinto elemento de este arreglo
+            [0,0,0,0,0,0],  // <-- Con el jugador habilitado se busca colocar la ficha del jugador
+            [2,1,2,1,2,1],  //     en el quinto elemento de este arreglo
             [2,1,2,1,2,1],
             [2,1,2,1,2,1],
             [1,2,1,2,1,2],

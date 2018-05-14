@@ -72,7 +72,7 @@
     text-align: center;
     margin-top: 20px;
     transition: padding 0.25s;
-    font-family: "Maven Pro";
+    font-family: "Baloo Bhaina";
 }
 button:focus{outline: 0;}
 
@@ -90,7 +90,7 @@ button:focus{outline: 0;}
     text-align: center;
     margin-top: 20px;
     transition: padding 0.25s;
-    font-family: "Maven Pro";
+    font-family: "Baloo Bhaina";
 }
 button:focus{outline: 0;}
 
@@ -108,7 +108,7 @@ button:focus{outline: 0;}
     text-align: center;
     margin-top: 20px;
     transition: padding 0.25s;
-    font-family: "Maven Pro";
+    font-family: "Baloo Bhaina";
 }
 button:focus{outline: 0;}
 
@@ -155,7 +155,7 @@ button:focus{outline: 0;}
 
 body{
     background: -webkit-linear-gradient(#356dc6, #285B8C, #104869);
-    font-family: "Maven Pro";
+    font-family: "Baloo Bhaina";
 }
 
 #encabezado{
@@ -170,18 +170,25 @@ body{
     max-height: 100%;
 }
 
+@font-face{
+    font-family: Halo;
+    src: url(Resource/Halo.ttf);
+}
+
 /* __________________________________________ PIE DE PAGINA __________________________________________ */
 
 .pie-de-pagina{
     color: white;
-    font-family: "Maven Pro";
+    font-family: "Baloo Bhaina";
     font-size: 17px;
     padding: 40px;
-    background-image: url();
+    background-image: url(https://github.com/Rodas171315/Informatica_2-DylanR-Connect_4/blob/master/Connect-4/Resource/navbar.png?raw=true);
     background-size: 100% 100%;
 
     border-top: 20px solid white;
-    border-image: url() 60 round;
+    -webkit-border-image: url(https://github.com/Rodas171315/Informatica_2-DylanR-Connect_4/blob/master/Connect-4/Resource/border-top.png?raw=true)60 round; /*Safari*/
+    -o-border-image: url(https://github.com/Rodas171315/Informatica_2-DylanR-Connect_4/blob/master/Connect-4/Resource/border-top.png?raw=true)60 round; /*Opera*/
+    border-image: url(https://github.com/Rodas171315/Informatica_2-DylanR-Connect_4/blob/master/Connect-4/Resource/border-top.png?raw=true) 60 round;
     -moz-background-clip: padding;
     -webkit-background-clip: padding;
     background-clip: padding-box;
