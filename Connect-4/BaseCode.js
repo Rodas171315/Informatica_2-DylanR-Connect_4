@@ -277,3 +277,38 @@ function resetGame(tablero) {
     return tablero;
 }
 module.exports.resetGame = resetGame;
+
+// ----- INICIADORES DE INTERFAZ -----
+
+function Jugador(edad, nombre, frase){
+    this.edad = edad;
+    this.nombre = nombre;
+    this.frase = frase;
+}
+module.exports.Jugador = Jugador;
+
+function IA(nombre, dificultad, frase){
+    this.nombre = nombre;
+    this.dificultad = dificultad;
+    this.frase = frase;
+}
+module.exports.IA = IA;
+
+function Frases(ganadoras, perdedoras, empate){
+    this.ganadoras = ganadoras;
+    this.perdedoras = perdedoras;
+    this.empate = empate;
+}
+module.exports.Frases = Frases;
+
+function Tableros(small, medium, big){
+    this.small = small;
+    this.medium = medium;
+    this.big = big;
+}
+module.exports.Tableros = Tableros;
+
+function Ficha(color){
+    this.color = color;
+}
+module.exports.Ficha = Ficha;

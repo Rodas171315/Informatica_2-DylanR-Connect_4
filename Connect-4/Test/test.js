@@ -14,7 +14,7 @@ var assert = require('assert');
 
 /*-------------------------------------------------- TESTS DE INTERFAZ -------------------------------------------------*/
 
-const {Jugador, IA, Frases, Tableros, Ficha} = require("../Programa");
+const {Jugador, IA, Frases, Tableros, Ficha} = require("../BaseCode");
 
 describe('Jugador', function() {
     it('Crea nuevos jugadores', function() {

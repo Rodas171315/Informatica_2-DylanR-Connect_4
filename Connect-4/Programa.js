@@ -1,42 +1,3 @@
-function Alert(){
-    alert("Juega\nConecta con tus amigos!");
-}
-
-// ----- Iniciadores -----
-
-function Jugador(edad, nombre, frase){
-    this.edad = edad;
-    this.nombre = nombre;
-    this.frase = frase;
-}
-module.exports.Jugador = Jugador;
-
-function IA(nombre, dificultad, frase){
-    this.nombre = nombre;
-    this.dificultad = dificultad;
-    this.frase = frase;
-}
-module.exports.IA = IA;
-
-function Frases(ganadoras, perdedoras, empate){
-    this.ganadoras = ganadoras;
-    this.perdedoras = perdedoras;
-    this.empate = empate;
-}
-module.exports.Frases = Frases;
-
-function Tableros(small, medium, big){
-    this.small = small;
-    this.medium = medium;
-    this.big = big;
-}
-module.exports.Tableros = Tableros;
-
-function Ficha(color){
-    this.color = color;
-}
-module.exports.Ficha = Ficha;
-
 // onunload="PageClose()"
 // window.onunload = function PageClose(){
 //    var result = confirm("Realmente quieres salir de esta pagina?");
@@ -47,6 +8,10 @@ module.exports.Ficha = Ficha;
 //    alert("Quieres la revancha verdad?");
 //    }
 // };
+
+function Alert(){
+    alert("Juega\nConecta con tus amigos!");
+}
 
 function Prompt(){
     var nombre = prompt("Ingresa tu nombre jugador");
@@ -92,10 +57,6 @@ var lastCompuColumn = 0;
 // en la matriz "tablero" ---> si la entrada == 0, entonces el lugar está vacío,
 //                             si la entrada == 1, está la ficha azul,
 //                             si la entrada == 2, está la ficha roja.
-
-function Multiplayer(){
-    resetGame();
-}
 
 function colocarFicha(column, turno){
     if(enabledClick==false && turno==0){
@@ -414,7 +375,7 @@ function colocarFicha(column, turno){
         // EVITA QUE EL JUGADOR GANE
         for(w=6; w>=0; w--)
         {
-            for(x=5; x>=0; x--)
+            for(x=0; x<6; x++)
             {
                 if(tablero[w][x]==0){
                     if(JugadorPuedeGanarSi(w,x) && PuedeColocarse(w,x)){
@@ -714,6 +675,10 @@ function colocarFicha(column, turno){
                 }
             }
         }        
+    }
+
+    function Multiplayer(){
+        resetGame();
     }
 
     function resetGame(){
