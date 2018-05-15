@@ -34,11 +34,9 @@ var tablero = [
     [0,0,0,0,0,0]
 ];
 
-function Audio(){
-    var winSound = new Audio('Audio/won.mp3');
-    var loseSound = new Audio('Audio/lose.mp3');
-    var blopSound = new Audio('Audio/blop.mp3');
-}
+var winSound = new Audio('https://raw.githubusercontent.com/Rodas171315/Informatica_2-DylanR-Connect_4/master/Connect-4/Audio/won.mp3');
+var loseSound = new Audio('https://raw.githubusercontent.com/Rodas171315/Informatica_2-DylanR-Connect_4/master/Connect-4/Audio/lose.mp3');
+var blopSound = new Audio('https://raw.githubusercontent.com/Rodas171315/Informatica_2-DylanR-Connect_4/master/Connect-4/Audio/blop.mp3');
 
 var Compu = new IA("Cortana", 10, "Chief, can u hear me?");
 
@@ -108,7 +106,7 @@ function insertarFicha(row, column, turno){
         lastCompuRow = row;
         lastCompuColumn = column;            
     }
-    Audio.blopSound.play();
+    blopSound.play();
 
     gameover=checkWin(row, column, turno);
 
@@ -128,10 +126,10 @@ function randomTurno(){
 }
 
 function ObtenerFila(column){
-    for(i=6; i>=0; i--)
+    for(q=6; q>=0; q--)
     {
-        if (tablero[i][column]==0) {
-            return i;
+        if (tablero[q][column]==0) {
+            return q;
         }
     } 
     return 0;
@@ -255,7 +253,7 @@ function CompuPuedeGanarSi(row,column){
     return false;
 }
 
-function JugadorPuedeGanarSi(){
+function JugadorPuedeGanarSi(row, column){
     tablero[row][column]=1;
 
     var count = 0; // Se debe llegar a 4 fichas consecutivas
@@ -361,11 +359,11 @@ function CompuTurno(){
     // PRUEBA SI LA COMPUTADORA PUEDE GANAR, RESPUESTA DE <<PRIORIDAD MÁXIMA>>
     for(w=6; w>=0; w--)
     {
-        for(x=5; x>=0; x--)
+        for(z=5; z>=0; z--)
         {
-            if(tablero[w][x]==0){
-                if(CompuPuedeGanarSi(w,x) && PuedeColocarse(w,x)){
-                    colocarFicha(x,1);
+            if(tablero[w][z]==0){
+                if(CompuPuedeGanarSi(w,z) && PuedeColocarse(w,z)){
+                    colocarFicha(z,1);
                     return;
                 }
             }
@@ -375,11 +373,11 @@ function CompuTurno(){
     // EVITA QUE EL JUGADOR GANE
     for(w=6; w>=0; w--)
     {
-        for(x=0; x<6; x++)
+        for(z=0; z<6; z++)
         {
-            if(tablero[w][x]==0){
-                if(JugadorPuedeGanarSi(w,x) && PuedeColocarse(w,x)){
-                    colocarFicha(x,1);
+            if(tablero[w][z]==0){
+                if(JugadorPuedeGanarSi(w,z) && PuedeColocarse(w,z)){
+                    colocarFicha(z,1);
                     return;
                 }
             }
@@ -393,15 +391,15 @@ function CompuTurno(){
 
     var trickFound = false;
 
-    for(i=1; i<5; i++)
+    for(u=1; u<5; u++)
     {
-        if(tablero[lastPlayerRow][i]==1){
+        if(tablero[lastPlayerRow][u]==1){
             if(LadoIzq==0){
-                LadoIzq = i;
+                LadoIzq = u;
             }
             trickCount++;
             if(trickCount==2){
-                LadoDer = i;
+                LadoDer = u;
                 trickFound = true;
                 break;
             }
@@ -481,8 +479,8 @@ function checkWin(row, column, turno){
                 if(count==4){
                     var x = document.getElementById("gameover");
                     x.classList.add("win");
-                    x.innerHTML= Player1.nombre + "gano!";
-                    Audio.winSound.play();
+                    x.innerHTML= "Ganaste!";
+                    winSound.play();
                     return true;
                 }
             }else{
@@ -498,8 +496,8 @@ function checkWin(row, column, turno){
                 if(count==4){
                     var x = document.getElementById("gameover");
                     x.classList.add("win");
-                    x.innerHTML= Player1.nombre + "gano!";
-                    Audio.winSound.play();
+                    x.innerHTML= "Ganaste!";
+                    winSound.play();
                     return true;
                 }
             }else{
@@ -547,8 +545,8 @@ function checkWin(row, column, turno){
                 if(count==4){
                     var x = document.getElementById("gameover");
                     x.classList.add("win");
-                    x.innerHTML= Player1.nombre + "gano!";
-                    Audio.winSound.play();
+                    x.innerHTML= "Ganaste!";
+                    winSound.play();
                     return true;
                 }
             }else{
@@ -563,8 +561,8 @@ function checkWin(row, column, turno){
                 if(count==4){
                     var x = document.getElementById("gameover");
                     x.classList.add("win");
-                    x.innerHTML= Player1.nombre + "gano!";
-                    Audio.winSound.play();
+                    x.innerHTML= "Ganaste!";
+                    winSound.play();
                     return true;
                 }
             }else{
@@ -580,8 +578,8 @@ function checkWin(row, column, turno){
                 if(count==4){
                     var x = document.getElementById("gameover");
                     x.classList.add("lose");
-                    x.innerHTML= Compu.nombre + "gano!";
-                    Audio.loseSound.play();
+                    x.innerHTML= "Perdiste!";
+                    loseSound.play();
                     return true;
                 }
             }else{
@@ -597,8 +595,8 @@ function checkWin(row, column, turno){
                 if(count==4){
                     var x = document.getElementById("gameover");
                     x.classList.add("lose");
-                    x.innerHTML= Compu.nombre + "gano";
-                    Audio.loseSound.play();
+                    x.innerHTML= "Perdiste!";
+                    loseSound.play();
                     return true;
                 }
             }else{
@@ -646,8 +644,8 @@ function checkWin(row, column, turno){
                 if(count==4){
                     var x = document.getElementById("gameover");
                     x.classList.add("lose");
-                    x.innerHTML= Compu.nombre + "gano!";
-                    Audio.loseSound.play();
+                    x.innerHTML= "Perdiste!";
+                    loseSound.play();
                     return true;
                 }
             }else{
@@ -662,8 +660,8 @@ function checkWin(row, column, turno){
                 if(count==4){
                     var x = document.getElementById("gameover");
                     x.classList.add("lose");
-                    x.innerHTML= Compu.nombre + "gano!";
-                    Audio.loseSound.play();
+                    x.innerHTML= "Perdiste!";
+                    loseSound.play();
                     return true;
                 }
             }else{
@@ -693,14 +691,14 @@ function resetGame(){
     x.classList.remove("win");
     x.classList.remove("lose");
     x.classList.remove("draw");
-    // winSound.pause();
-    Audio.winSound.pause();
-    // loseSound.pause();
-    Audio.loseSound.pause();
-    // winSound.currentTime = 0;
-    Audio.winSound.currentTime = 0;
-    // loseSound.currentTime = 0;
-    Audio.loseSound.currentTime = 0;
+    winSound.pause();
+    //Audio.winSound.pause();
+    loseSound.pause();
+    //Audio.loseSound.pause();
+    winSound.currentTime = 0;
+    //Audio.winSound.currentTime = 0;
+    loseSound.currentTime = 0;
+    //Audio.loseSound.currentTime = 0;
 }
 
 /* _____________________________________________ FIN DE SOLOGAME _____________________________________________ */
