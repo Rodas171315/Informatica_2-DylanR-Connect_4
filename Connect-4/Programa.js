@@ -17,7 +17,7 @@ function Prompt(){
     var nombre = prompt("Ingresa tu nombre jugador");
     var edad = prompt("Ingresa tu edad jugador");
     var frase = prompt("Ingresa tu grito de batalla jugador");
-   var Player1 = new Jugador(edad, nombre, frase);
+    var Player1 = new Jugador(edad, nombre, frase);
     return Player1;
 }
 
@@ -38,6 +38,7 @@ var winSound = new Audio('https://raw.githubusercontent.com/Rodas171315/Informat
 var loseSound = new Audio('https://raw.githubusercontent.com/Rodas171315/Informatica_2-DylanR-Connect_4/master/Connect-4/Audio/lose.mp3');
 var blopSound = new Audio('https://raw.githubusercontent.com/Rodas171315/Informatica_2-DylanR-Connect_4/master/Connect-4/Audio/blop.mp3');
 
+var Player = new Jugador(18,"Dylan","Por la Horda!")
 var Compu = new IA("Cortana", 10, "Chief, can u hear me?");
 
 var enabledClick = true;
